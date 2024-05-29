@@ -5,13 +5,13 @@ import '../styles/global.css';
 
 // data source
 
-const source = 'https://opentdb.com/api.php?amount=10';
+const source = 'https://v2.jokeapi.dev/joke/Any?amount=10';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
 const data = await res.json();
 // site name
-const siteName = 'Trivia Qs';
+const siteName = 'JOKES!';
 ---
 
 <html lang="en">
@@ -24,7 +24,7 @@ const siteName = 'Trivia Qs';
 		<!-- Normalize CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-		<title{siteName}</title>
+		<title>{siteName}</title>
 	</head>
 	<body>
 		
@@ -38,9 +38,10 @@ const siteName = 'Trivia Qs';
 		  
 				<!-- Your API Data -->
 				{
-			data.results.map (item  => <blockquote>{item.question}</blockquote>
-			<em>{item.correct_answer}</em>	
-			)
+		data.jokes.map(joke => 
+		<p>{joke.setup}</p>
+	<p>{joke.delivery}</p>
+	)
 
 				}
 		  
