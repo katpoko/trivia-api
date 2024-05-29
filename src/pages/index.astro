@@ -5,13 +5,13 @@ import '../styles/global.css';
 
 // data source
 
-const source = 'https://v2.jokeapi.dev/joke/Any?amount=10';
+const source = 'https://api.thecatapi.com/v1/images/search?limit=10';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
 const data = await res.json();
 // site name
-const siteName = 'JOKES!';
+const siteName = 'cats!';
 ---
 
 <html lang="en">
@@ -38,11 +38,10 @@ const siteName = 'JOKES!';
 		  
 				<!-- Your API Data -->
 				{
-		data.jokes.map(joke => 
-		<p>{joke.setup}</p>
-	<p>{joke.delivery}</p>
-	)
+					data.map (cat => 
+					<img src ={cat.url} width={cat.width}/>
 
+					)
 				}
 		  
 			</ul>
