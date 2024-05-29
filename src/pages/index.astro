@@ -1,14 +1,17 @@
 ---
 // Import Stylesheet
+import { map } from 'astro/zod';
 import '../styles/global.css';
 
 // data source
-// replace temporary JSON placeholder API
-const source = 'https://jsonplaceholder.typicode.com/users';
+
+const source = 'https://opentdb.com/api.php?amount=10';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
 const data = await res.json();
+// site name
+const siteName = 'Trivia Qs';
 ---
 
 <html lang="en">
@@ -21,12 +24,12 @@ const data = await res.json();
 		<!-- Normalize CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-		<title>Retreive and and display external API data with Astro</title>
+		<title{siteName}</title>
 	</head>
 	<body>
 		
 		<header class="masthead">
-			<h1 class="site-title">Gallery</h1>
+			<h1 class="site-title">{siteName}</h1>
 		</header>
 
 		<main id="content" class="main-area">
@@ -35,19 +38,10 @@ const data = await res.json();
 		  
 				<!-- Your API Data -->
 				{
-					data.map( item =>
-					<li class="card-item">
-						<a href="#">
-							<figure class="card">
-							<img src="https://assets.codepen.io/16425/image-placeholder.png" alt="Placeholder">
-							<figcaption class="caption">
-								<h3 class="caption-title">{item.name}</h3>
-								<p>{item.company.catchPhrase}</p>
-							</figcaption>
-							</figure>
-						</a>
-					</li> 
-					)
+			data.results.map (item  => <blockquote>{item.question}</blockquote>
+			<em>{item.correct_answer}</em>	
+			)
+
 				}
 		  
 			</ul>
